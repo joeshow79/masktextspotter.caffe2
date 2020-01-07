@@ -440,7 +440,9 @@ __C.TEST.BBOX_VOTE.SCORING_METHOD = b'ID'
 # different methods)
 __C.TEST.BBOX_VOTE.SCORING_METHOD_BETA = 1.0
 
-__C.TEST.VIS = False
+#jasonj
+#__C.TEST.VIS = False
+__C.TEST.VIS = True
 
 __C.TEST.OUTPUT_POLYGON = False
 
@@ -740,7 +742,9 @@ __C.FPN.RPN_ANCHOR_START_SIZE = 32
 # Use extra FPN levels, as done in the RetinaNet paper
 __C.FPN.EXTRA_CONV_LEVELS = False
 
-__C.FPN.USE_DEFORMABLE = True
+#__C.FPN.USE_DEFORMABLE = True
+#jasonj 2020-01-06
+__C.FPN.USE_DEFORMABLE = False
 # ---------------------------------------------------------------------------- #
 # Mask R-CNN options ("MRCNN" means Mask R-CNN)
 # ---------------------------------------------------------------------------- #

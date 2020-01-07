@@ -68,6 +68,8 @@ def get_detectron_ops_lib():
     c2_dir = get_caffe2_dir()
     detectron_ops_lib = os.path.join(
         c2_dir, 'lib/libcaffe2_detectron_ops_gpu.so')
+        #jasonj 2020-01-06
+        #c2_dir, 'lib/libcaffe2_detectron_ops.so')
     assert os.path.exists(detectron_ops_lib), \
         ('Detectron ops lib not found at \'{}\'; make sure that your Caffe2 '
          'version includes Detectron module').format(detectron_ops_lib)

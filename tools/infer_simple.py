@@ -40,7 +40,8 @@ from core.config import cfg
 from core.config import merge_cfg_from_file
 from utils.timer import Timer
 import core.test_engine as infer_engine
-import datasets.dummy_datasets as dummy_datasets
+#jasonj
+#import datasets.dummy_datasets as dummy_datasets
 import utils.c2 as c2_utils
 import utils.logging
 import utils.vis as vis_utils
@@ -97,7 +98,8 @@ def main(args):
     cfg.NUM_GPUS = 1
     assert_and_infer_cfg()
     model = infer_engine.initialize_model_from_cfg()
-    dummy_coco_dataset = dummy_datasets.get_coco_dataset()
+    #jasonj
+    #dummy_coco_dataset = dummy_datasets.get_coco_dataset()
 
     if os.path.isdir(args.im_or_folder):
         im_list = glob.iglob(args.im_or_folder + '/*.' + args.image_ext)
@@ -113,9 +115,9 @@ def main(args):
         timers = defaultdict(Timer)
         t = time.time()
         with c2_utils.NamedCudaScope(0):
+            #jasonj
             cls_boxes, cls_segms, cls_keyps = infer_engine.im_detect_all(
-                model, im, None, timers=timers
-            )
+                model, im, "infer_res.jpg", None, timers=timers)
         logger.info('Inference time: {:.3f}s'.format(time.time() - t))
         for k, v in timers.items():
             logger.info(' | {}: {:.3f}s'.format(k, v.average_time))
@@ -125,19 +127,19 @@ def main(args):
                 'rest (caches and auto-tuning need to warm up)'
             )
 
-        vis_utils.vis_one_image(
-            im[:, :, ::-1],  # BGR -> RGB for visualization
-            im_name,
-            args.output_dir,
-            cls_boxes,
-            cls_segms,
-            cls_keyps,
-            dataset=dummy_coco_dataset,
-            box_alpha=0.3,
-            show_class=True,
-            thresh=0.7,
-            kp_thresh=2
-        )
+#         vis_utils.vis_one_image(
+#             im[:, :, ::-1],  # BGR -> RGB for visualization
+#             im_name,
+#             args.output_dir,
+#             cls_boxes,
+#             cls_segms,
+#             cls_keyps,
+#             dataset=dummy_coco_dataset,
+#             box_alpha=0.3,
+#             show_class=True,
+#             thresh=0.7,
+#             kp_thresh=2
+#         )
 
 
 if __name__ == '__main__':
